@@ -4,6 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
+var db = require("./database/index");
 const indexRouter = require("./routes/index");
 
 const app = express();
@@ -21,6 +22,16 @@ app.use(cors());
 
 app.use("/", indexRouter);
 
+app.get(`/:id`, function(req, res, next) {
+  let id = req.params.id;
+  db.getProduct(id, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(results);
+    }
+  });
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
