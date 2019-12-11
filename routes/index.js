@@ -3,11 +3,15 @@ let router = express.Router();
 let db = require("../database/index.js");
 
 /* GET home page. */
-router.get("/", (req, res, next) => {
-  // res.render("index", { title: "Express" });
-  res.send("oops");
-  res.end();
-});
+router.get(
+  "http://node-express-env.bcgwijp6ik.us-east-2.elasticbeanstalk.com/",
+  (req, res, next) => {
+    // res.render("index", { title: "Express" });
+    console.log("get");
+    res.send("oops");
+    res.end();
+  }
+);
 
 // router.get(`/:id`, (req, res) => {
 //   let id = req.params.id;
